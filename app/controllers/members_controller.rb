@@ -20,6 +20,7 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(member_params)
     if @member.save
+      sign_in @member
       flash[:success] = "メンバー登録しました！"
       redirect_to @member
     else
@@ -35,7 +36,7 @@ class MembersController < ApplicationController
 
   private
 
-  def member_params
-    params.require(:member).permit(:name, :email, :password, :password_confirmation, :image, :image_cache, :remove_image)
-  end
+    def member_params
+      params.require(:member).permit(:name, :email, :password, :password_confirmation, :image, :image_cache, :remove_image)
+    end
 end

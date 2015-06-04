@@ -1,5 +1,7 @@
 <% provide(:title, 'All users') %>
-<%= @members.each do |member| %>
-    <p><%= member.name %></p>
-    <p><%= member.email %></p>
+<% @members.each do |member| %>
+    <p>
+      <%= member.name %>
+      <%= member.email %>
+    </p>
 <% end %>
