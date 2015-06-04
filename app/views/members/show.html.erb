@@ -1,0 +1,15 @@
+<% provide(:title, @member.name) %>
+<div class="row" %>
+  <aside class="span4">
+    <section>
+      <h1>
+        <% if @member.image? %>
+            <div class="thumbnail">
+              <%= image_tag @member.image.url %>
+            </div>
+        <% end %>
+        <%= @member.name %>
+      </h1>
+    </section>
+  </aside>
+</div>

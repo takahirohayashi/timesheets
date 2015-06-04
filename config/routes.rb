@@ -1,4 +1,8 @@
 Timesheets::Application.routes.draw do
+  root  'members#index'
+  resources :members
+  match '/signup',  to: 'members#new',            via: 'get'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
