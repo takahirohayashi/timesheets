@@ -7,21 +7,27 @@
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", '#' %></li>
           <% if signed_in? %>
-            <li><%= link_to "Members", '#' %></li>
+            <!-- members_pathなので、MembersControllerのindexアクションへのリンク -->
+            <li><%= link_to "Members", members_path %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
+                <!-- current_memberなので、Memberモデルオブジェクトだから、MembersControllerのshowメソッドにリンク -->
                 <li><%= link_to "プロフィール", current_member %></li>
-                <li><%= link_to "Settings", '#' %></li>
+                <!-- edit_member_path(current_member)だから、MembersControllerのeditメソッドにリンク -->
+                <li><%= link_to "Settings", edit_member_path(current_member) %></li>
                 <li class="divider"></li>
                 <li>
+                  <!-- signout_pathだから、SessionsControllerのdestroyメソッドにリンク
+                    method: "delete"の指定をしてるけどいらないかも　-->
                   <%= link_to "Sign out", signout_path, method: "delete" %>
                 </li>
               </ul>
             </li>
           <% else %>
+            <!-- signin_pathだから、SessionsControllerのnewメソッドにリンク -->
             <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
         </ul>

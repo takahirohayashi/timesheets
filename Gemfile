@@ -5,7 +5,10 @@ gem 'rails', '4.0.5'
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'sprockets', '2.12.3'
 gem 'bcrypt-ruby', '3.1.2'
-gem "carrierwave"
+gem 'carrierwave'
+gem 'faker', '1.1.2'
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.9'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

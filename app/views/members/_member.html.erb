@@ -1,0 +1,18 @@
+<!-- もともとmembers/index.html.erbから切り出した -->
+
+<li>
+  <!-- memberなので、member_pathと等しくなり、MembersControllerのshowメソッドへ飛ぶ -->
+  <%= link_to member.name, member %>
+
+  <!--
+  administrator?；
+  Railsではモデルにboolean型のフィールドを定義すると
+  フィールド名に?がついたインスタンスメソッドを自動で用意してくれます。
+
+  current_member.administrator? で 現在ログインしている@current_member が admin か判定　かつ
+  !member.administrator?で 各member が adminでない事を確認　※つまりadminユーザーは削除出来ない
+  -->
+  <% if current_member.administrator? && !member.administrator? %>
+      | <%= link_to "delete", member, method: :delete, data: { confirm: "You sure?" } %>
+  <% end %>
+</li>

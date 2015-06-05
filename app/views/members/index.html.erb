@@ -1,7 +1,28 @@
 <% provide(:title, 'All users') %>
-<% @members.each do |member| %>
-    <p>
-      <%= member.name %>
-      <%= member.email %>
-    </p>
-<% end %>
+<h1>All users</h1>
+
+<!--
+will_paginateメソッドは少々不思議なことに、membersビューのコードの中から@membersオブジェクトを
+自動的に見つけ出し、それから他のページにアクセスするためのページネーションリンクを作成しています。
+実は、このビューはこのままでは動きません。
+@membersオブジェクトに現在含まれているのはMember.allの結果ですが、will_paginateでは、
+結果が明示的にpaginateメソッドを使っている必要があるからです。
+-->
+
+<%= will_paginate %>
+
+<ul class="users">
+      <!--
+      renderをパーシャルの名前の文字列に対してではなく、Memberクラスのmember変数に対して
+      実行していることに注意してください。この場合、Railsは自動的に_member.html.erbという名前の
+      パーシャルを探します。
+
+      Railsは@membersをMemberオブジェクトのリストであると推測します。
+      さらに、メンバーのコレクションを与えて呼び出すと、Railsは自動的に
+      メンバーのコレクションを列挙し、それぞれのメンバーを_member.html.erbパーシャルで出力します
+      (each doとendで囲む必要がなくなります)。これにより、コードは極めてコンパクトになります。
+      -->
+      <%= render @members %>
+</ul>
+
+<%= will_paginate %>
